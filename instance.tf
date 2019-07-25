@@ -42,7 +42,7 @@ resource "aws_instance" "api" {
       "./install.sh",
       "cd api",
       "sudo docker build -t api:latest .",
-      "sudo docker run -d -e -p 8080:8080 MONGO_HOST=${aws_instance.mongo.private_ip} api:latest" 
+      "sudo docker run -d api:latest -p 8080:8080 -e MONGO_HOST=${aws_instance.mongo.private_ip} api:latest" 
     ]
   }
 }
