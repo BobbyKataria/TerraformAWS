@@ -2,7 +2,8 @@ resource "aws_instance" "frontend" {
   # ubuntu 18.04
   ami = "ami-0c30afcb7ab02233d"
   instance_type = "t2.micro"
-  subnet_id = "${aws_subnet.default.id}"
+  private_ip = "10.0.1.21"
+  subnet_id = "${aws_subnet.ui.id}"
   vpc_security_group_ids = ["${aws_security_group.default.id}"]
   associate_public_ip_address = true
   key_name = "new-key-pair"
@@ -25,7 +26,8 @@ resource "aws_instance" "api" {
   # ubuntu 18.04
   ami = "ami-0c30afcb7ab02233d"
   instance_type = "t2.micro"
-  subnet_id = "${aws_subnet.default.id}"
+  private_ip = "10.0.2.22"
+  subnet_id = "${aws_subnet.api.id}"
   vpc_security_group_ids = ["${aws_security_group.default.id}"]
   associate_public_ip_address = true
   key_name = "new-key-pair"
@@ -49,8 +51,9 @@ resource "aws_instance" "api" {
 resource "aws_instance" "mongo" {
   # ubuntu 18.04
   ami = "ami-0c30afcb7ab02233d"
+  private_ip = "10.0.3.23"
   instance_type = "t2.micro"
-  subnet_id = "${aws_subnet.default.id}"
+  subnet_id = "${aws_subnet.db.id}"
   vpc_security_group_ids = ["${aws_security_group.default.id}"]
   associate_public_ip_address = true
   key_name = "new-key-pair"
